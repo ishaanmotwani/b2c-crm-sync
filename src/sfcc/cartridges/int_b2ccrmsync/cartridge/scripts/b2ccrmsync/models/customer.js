@@ -81,7 +81,10 @@ Customer.prototype = {
      * @param {String} status The status to save on the profile
      */
     updateStatus: function (status) {
-        if (!this.profile) { return; }
+        if (!this.profile) {
+            return;
+        }
+
         require('dw/system/Transaction').wrap(function () {
             this.profile.custom.b2ccrm_syncStatus = status;
         }.bind(this));
@@ -97,7 +100,10 @@ Customer.prototype = {
      * @param {String} contactID The Salesforce Core contact ID to save on the customer profile
      */
     updateExternalId: function (accountID, contactID) {
-        if (!this.profile) { return; }
+        if (!this.profile) {
+            return;
+        }
+
         require('dw/system/Transaction').wrap(function () {
             if (accountID) { this.profile.custom.b2ccrm_accountId = accountID; }
             if (contactID) { this.profile.custom.b2ccrm_contactId = contactID; }
@@ -107,19 +113,25 @@ Customer.prototype = {
     /**
      * @memberOf Customer
      * @function updateSyncResponseText
-     * @description Update the {custom.b2ccrm_syncResponseText} attribute with the given {text}
+     * @description Update the {custom.b2ccrm_syncResponseText} attribute with the given {text}. The text value should never grow bigger than 50,000 characters
      *
-     * @param {String} text The text to save within the sync-response-text set-of-string on the profile
+     * @param {String} text The text to save within the sync-response-text json text on the profile
      */
     updateSyncResponseText: function (text) {
-        if (!this.profile) { return; }
+        if (!this.profile) {
+            return;
+        }
+
         require('dw/system/Transaction').wrap(function () {
-            var syncResponseText = (this.profile.custom.b2ccrm_syncResponseText || []).slice(0);
+            var syncResponseText = require('*/cartridge/scripts/b2ccrmsync/util/helpers').expandJSON(this.profile.custom.b2ccrm_syncResponseText, []);
             var thisDate = new Date();
-            syncResponseText.push(require('dw/util/StringUtils').format('{0}: {1}', thisDate.toUTCString(), text));
-            // In case the number of values is exceeding the quota, remove the oldest entry
-            if (syncResponseText.length >= require('*/cartridge/scripts/b2ccrmsync/util/helpers').MAX_SET_ENTRIES) { syncResponseText.shift(); }
-            this.profile.custom.b2ccrm_syncResponseText = syncResponseText;
+            syncResponseText.unshift(require('dw/util/StringUtils').format('{0}: {1}', thisDate.toUTCString(), text));
+            var responseHistory = JSON.stringify(syncResponseText, null, 2);
+            while (responseHistory.length > 50000) {
+                syncResponseText.pop();
+                responseHistory = JSON.stringify(syncResponseText, null, 2);
+            }
+            this.profile.custom.b2ccrm_syncResponseText = JSON.stringify(syncResponseText, null, 2);
         }.bind(this));
 
     }

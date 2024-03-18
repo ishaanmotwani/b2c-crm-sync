@@ -11,7 +11,7 @@ Salesforce B2C Commerce / CRM Sync is an enablement solution designed by Salesfo
 
 b2c-crm-sync includes a framework for integrating these clouds (ex. B2C Commerce and Service Cloud) -- leveraging REST APIs and the declarative capabilities of the Salesforce Platform. This approach powers frictionless customer experiences across B2C Commerce, Service, and Marketing Clouds by resolving and synchronizing customer profiles across these Salesforce products.
 
-> :100: &nbsp;This repository is currently in it's **v1.4.1** release. The MVP feature-set is complete, and you can now deploy b2c-crm-sync to scratchOrgs and sandboxes via its CLI tooling. Solution trustworthiness is critical for our success. Please use the tagged release, but also feel free to deploy from master if you want to work with the latest updates. &nbsp;:100:
+> :100: &nbsp;This repository is currently in it's **v3.0.0** release. The MVP feature-set is complete, and you can now deploy b2c-crm-sync to scratchOrgs and sandboxes via its CLI tooling. Solution trustworthiness is critical for our success. Please use the tagged release, but also feel free to deploy from master if you want to work with the latest updates. &nbsp;:100:
 
 Please visit our [issues-list](https://github.com/SalesforceCommerceCloud/b2c-crm-sync/issues) to see outstanding issues and features, and visit our [discussions](https://github.com/SalesforceCommerceCloud/b2c-crm-sync/discussions) to ask questions.
 
@@ -110,7 +110,7 @@ b2c-crm-sync also requires [SFDX](https://developer.salesforce.com/tools/sfdxcli
 sfdx --version
 ```
 
-> As of v0.9.0 -- this build has been tested against **node.js v15.2.1** and **sfdx v7.108.0 darwin-x64**.
+> As of v3.0.2 -- this build has been tested against **node.js v16.13.0** and **sfdx v7.162.0 darwin-x64**.
 
 ### B2C Commerce Setup Instructions
 
@@ -224,7 +224,7 @@ profile
 ```
 
 - Token Endpoint Auth Method: `private_key_jwt`
-- Access Token Format: `UUID`
+- Access Token Format: `JWT`
 
 7. Click the `Save` button to apply these changes to your ClientID's configuration.
 

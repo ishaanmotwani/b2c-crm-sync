@@ -1,7 +1,7 @@
 module.exports = {
 
     // Describes the current versionNo of the service-cloud-connector
-    "versionNo": "0.9.0",
+    "versionNo": require('../package.json').version,
 
     // Manages debug mode for the CLI application
     "debugMode": true,
@@ -110,18 +110,6 @@ module.exports = {
             "cli",
             "json"
         ]
-
-    },
-
-    // Define the regular expressions used to govern the siteId / connectedAppId
-    "connectedAppIdRegEx": {
-
-        // Describe the individual regExes used to clean the siteId
-        "whiteSpace": /\s/g,
-        "dashes": /-/g,
-        "doubleUnderscore": /_+/g,
-        "nonAlphaNumeric": /[^\w_]+/g,
-        "alphaOnly": /^[a-zA-Z]/g
 
     },
 

@@ -5,10 +5,9 @@
     <externalId>false</externalId>
     <inlineHelpText>... represents the recorded B2C Commerce Account Manager AuthToken for a given authentication request.</inlineHelpText>
     <label>Auth Token Value</label>
-    <length>255</length>
-    <required>false</required>
+    <length>131072</length>
     <trackFeedHistory>false</trackFeedHistory>
     <trackTrending>false</trackTrending>
-    <type>Text</type>
-    <unique>false</unique>
+    <type>LongTextArea</type>
+    <visibleLines>4</visibleLines>
 </CustomField>

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>B2C_AuthToken__c</fullName>
-    <description>... represents the B2C AuthToken used to invoke the Contact integration REST API request with B2C Commerce.</description>
+    <description>... represents the recorded B2C Commerce Account Manager AuthToken for a given authentication request.</description>
     <externalId>false</externalId>
-    <inlineHelpText>... represents the B2C AuthToken used to invoke the Contact integration REST API request with B2C Commerce.</inlineHelpText>
+    <inlineHelpText>... represents the recorded B2C Commerce Account Manager AuthToken for a given authentication request.</inlineHelpText>
     <label>B2C AuthToken</label>
     <length>131072</length>
     <trackFeedHistory>false</trackFeedHistory>
